@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Manu ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ff4d6d,#ff99c8);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+.container{
+padding:40px 20px;
+position:relative;
+z-index:2;
+}
+
+img{
+width:220px;
+height:220px;
+border-radius:50%;
+border:6px solid white;
+object-fit:cover;
+box-shadow:0 0 25px rgba(255,255,255,.6);
+}
+
+h1{
+font-size:42px;
+margin:15px 0;
+}
+
+p{
+font-size:22px;
+max-width:700px;
+margin:auto;
+line-height:1.7;
+}
+
+button{
+margin-top:25px;
+padding:14px 30px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff2d55;
+cursor:pointer;
+font-weight:bold;
+}
+
+.heart{
+position:absolute;
+font-size:24px;
+animation:float 8s linear infinite;
+opacity:.8;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-120px);}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Apni photo ka naam photo.jpg rakhkar isi folder me upload kar dena -->
+<img src="photo.jpg">
+
+<h1>🎂 Happy Birthday Manu ❤️</h1>
+
+<p id="text"></p>
+
+<button onclick="play()">🎵 Tap Here</button>
+
+</div>
+
+<script>
+
+let msg=`Hi Manu... ❤️
+
+Aaj ka din sirf ek birthday nahi...
+
+Aaj wo din hai jab is duniya ko ek bahut khoobsurat dil mila.
+
+Tumhari har muskaan hamesha salamat rahe...
+Har dua tumhare naam ho...
+Har sapna poora ho...
+
+Bas itna yaad rakhna...
+
+Is duniya me koi hai...
+Jo dil se chahta hai ki tum hamesha khush raho. ❤️
+
+Happy Birthday Manu... 🎂💖
+
+— From Someone Who Will Always Wish The Best For You 🌹`;
+
+let i=0;
+
+function type(){
+if(i<msg.length){
+document.getElementById("text").innerHTML+=msg.charAt(i);
+i++;
+setTimeout(type,45);
+}
+}
+type();
+
+for(let i=0;i<40;i++){
+let h=document.createElement("div");
+h.innerHTML="❤️";
+h.className="heart";
+h.style.left=Math.random()*100+"%";
+h.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(h);
+}
+
+function play(){
+let ctx=new(window.AudioContext||window.webkitAudioContext)();
+let notes=[261.63,261.63,293.66,261.63,349.23,329.63,261.63,261.63,293.66,261.63,392,349.23];
+notes.forEach((f,n)=>{
+let o=ctx.createOscillator();
+let g=ctx.createGain();
+o.connect(g);
+g.connect(ctx.destination);
+o.frequency.value=f;
+o.start(ctx.currentTime+n*0.4);
+o.stop(ctx.currentTime+n*0.4+0.35);
+});
+}
+
+</script>
+
+</body>
+</html>
